@@ -12,15 +12,15 @@ echo "vim-gtk3 bash-completion acpi lm-sensors htop curl bc fdisk ranger tree wg
 
 yn_choice() {
 	while : ; do
-		read -p "  $1 (Y/N)? " input
-		if [ "$input" == "Y" ]; then
+		read -p "  $1 (y/n)? " input
+		if [ "$input" == "y" ]; then
 			choice=Y
 			break;
-		elif [ "$input" == "N" ]; then
+		elif [ "$input" == "n" ]; then
 			choice=N
 			break;
 		fi
-		echo "Please enter a 'Y' or a 'N'"
+		echo "Please enter a 'y' or a 'n'"
 	done
 }
 
@@ -56,7 +56,7 @@ echo "Entertainment:"
 
 if_append "Youtube-DL" "youtube-dl"
 
-if_append "Utils for Youtube-DL (ffmpeg & AtomicParsley)" "ffmpeg AtomicParsley"
+if_append "Utils for Youtube-DL (ffmpeg & AtomicParsley)" "ffmpeg atomicparsley"
 
 if_append "MPV" "mpv jq socat"
 
@@ -73,7 +73,7 @@ if_append "NodeJS" "nodejs npm"
 yn_choice "OpenJDK incl. Source"
 if [ "$choice" == "Y" ]; then
 	number_choice "   | Which version"
-	append "openjdk-$choice-jdk openjdk-$choice-src"
+	append "openjdk-$choice-jdk openjdk-$choice-source"
 	if_append "   | Including OpenJFX with source" "openjfx openjfx-source"
 fi
 
@@ -109,4 +109,6 @@ if_append "SSH-Server" "openssh-server"
 if_append "QEMU" "qemu-system-x86"
 if_append "TMux" "tmux"
 
+tr '\n' ' ' <$filename >tmp_packages_1912498172931.txt
+mv tmp_packages_1912498172931.txt $filename
 echo "DONE! Check $filename"
